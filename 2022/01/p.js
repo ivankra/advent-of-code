@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 const fs = require('fs');
 
-const text = fs.readFileSync('input.txt').toString();
+//const text = fs.readFileSync('input.txt').toString();
+const text = fs.readFileSync(0).toString();
 
 let sums = text.split('\n\n').map(block => {
   let nums = block.trim().split('\n').map(x => parseInt(x));
