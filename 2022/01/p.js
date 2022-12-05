@@ -10,5 +10,4 @@ let sums = text.split('\n\n').map(block => {
 });
 
 sums = new Int32Array(sums).sort().reverse();
-console.log(sums[0]);
-console.log(sums.slice(0, 3).reduce((a, x) => a + x));
+console.log(sums[0], sums.slice(0, 3).reduce((a, x) => a + x));

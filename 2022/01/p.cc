@@ -18,5 +18,5 @@ int main() {
     std::sort(sums.begin(), sums.end());
     std::reverse(sums.begin(), sums.end());
 
-    std::cout << sums[0] << "\n" << sums[0] + sums[1] + sums[2] << "\n";
+    std::cout << sums[0] << " " << (sums[0] + sums[1] + sums[2]) << "\n";
 }

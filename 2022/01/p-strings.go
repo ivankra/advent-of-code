@@ -32,5 +32,5 @@ func main() {
 	}
 
 	sort.Sort(sort.Reverse(sort.IntSlice(sums)))
-	fmt.Printf("%d\n%d\n", sums[0], sums[0]+sums[1]+sums[2])
+	fmt.Println(sums[0], sums[0]+sums[1]+sums[2])
 }
