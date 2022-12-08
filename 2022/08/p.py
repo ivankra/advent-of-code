@@ -4,37 +4,33 @@ import sys
 A = sys.stdin.read().strip().split('\n')
 n, m = len(A), len(A[0])
 
-def visible(i, j):
+
+def score(i, j):
+    edge = False
+    scenic = 1
+
     for dy, dx in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-        h = []
-        for k in range(0, max(n,m) + 1):
-            if 0 <= i + dy*k < n and 0 <= j + dx*k < m:
-                h.append(A[i+dy*k][j+dx*k])
-        if len(h) == 1 or h[0] > max(h[1:]):
-            return True
-    return False
+        vis = 0
 
+        for k in range(1, max(n, m) + 10):
+            if not (0 <= i + dy*k < n and 0 <= j + dx*k < m):
+                edge = True
+                break
 
-def scenic(i, j):
-    res = 1
-    for dy, dx in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-        h0 = A[i][j]
-        hh = []
-        for k in range(1, max(n,m) + 1):
-            if 0 <= i + dy*k < n and 0 <= j + dx*k < m:
-                h = A[i+dy*k][j+dx*k]
-                hh.append(h)
-                if h >= h0:
-                    break
-        res *= len(hh)
-    return res
+            vis += 1
+            if A[i+dy*k][j+dx*k] >= A[i][j]:
+                break
 
+        scenic *= vis
+
+    return edge, scenic
 
 
 ans1, ans2 = 0, 0
 for i in range(n):
     for j in range(m):
-        ans1 += visible(i, j)
-        ans2 = max(ans2, scenic(i, j))
+        edge_visible, scenic = score(i, j)
+        ans1 += edge_visible
+        ans2 = max(ans2, scenic)
 
 print(ans1, ans2)
